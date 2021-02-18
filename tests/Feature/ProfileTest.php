@@ -27,4 +27,13 @@ class ProfileTest extends TestCase
 
         $response->assertRedirect('profile');
     }
+
+    public function testPhotoRequired()
+    {
+        $response = $this->post('profile',[
+            'photo' => ''
+        ]);
+
+        $response->assertSessionHasErrors('photo');
+    }
 }
